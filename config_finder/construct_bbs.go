@@ -17,7 +17,8 @@ func ConstructBBS(etcdClusterFlag string, consulClusterFlag string) (bbs.Veritas
 		return nil, nil, err
 	}
 
-	etcdAdapter := etcdstoreadapter.NewETCDStoreAdapter(etcdCluster, workpool.NewWorkPool(10))
+	wp, _ := workpool.NewWorkPool(10)
+	etcdAdapter := etcdstoreadapter.NewETCDStoreAdapter(etcdCluster, wp)
 	err = etcdAdapter.Connect()
 	if err != nil {
 		return nil, nil, err

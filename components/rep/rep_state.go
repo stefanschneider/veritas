@@ -93,7 +93,7 @@ func fetchCellStates(cells []models.CellPresence) stateResponses {
 	lock := &sync.Mutex{}
 	responses := []stateResponse{}
 
-	wp := workpool.NewWorkPool(20)
+	wp, _ := workpool.NewWorkPool(20)
 	wg := &sync.WaitGroup{}
 	wg.Add(len(cells))
 	for _, cell := range cells {
